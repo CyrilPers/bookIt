@@ -3,7 +3,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -28,9 +27,6 @@ public class User {
     private String phoneNumber;
 
     private LocalDateTime creationDate;
-
-    @ManyToMany
-    private List<Appointment> appointments;
 
     @OneToOne(orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_USER_ADDRESS"))

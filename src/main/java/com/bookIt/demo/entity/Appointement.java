@@ -5,14 +5,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-public class Appointment {
+public class Appointement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,8 +20,13 @@ public class Appointment {
 
     private LocalDateTime dateEnd;
 
-    @ManyToMany
-    private List<User> user;
+    @ManyToOne
+    @JoinColumn(name = "service_id")
+    private Service service;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
 
     @ManyToOne(optional = false)
     private AppointmentState appointmentState;

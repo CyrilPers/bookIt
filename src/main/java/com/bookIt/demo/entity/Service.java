@@ -5,10 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-@Table(name = "service")
+@Entity
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,9 +19,12 @@ public class Service {
 
     private String description;
 
-    private String title;
+    private String name;
 
     private BigDecimal price;
+
+    @OneToMany
+    private List<Appointement> appointements;
 
     @ManyToOne
     private Category category;

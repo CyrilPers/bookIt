@@ -1,8 +1,6 @@
 package com.bookIt.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +13,9 @@ import java.util.List;
 public class Customer extends User {
 
     private Boolean advertising = false;
+
+    @OneToMany
+    private List<Appointement> appointements;
 
     public Customer() {}
 
