@@ -9,12 +9,11 @@ import lombok.Setter;
 @Entity
 public class County {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String label;
+    private String name;
 
-    private Integer number;
+    private String code;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Region inseeRegion;
 }

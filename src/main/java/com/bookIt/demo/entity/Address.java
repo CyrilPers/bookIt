@@ -3,8 +3,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @Entity
@@ -21,5 +19,17 @@ public class Address {
     private String street;
 
     private String street2;
+
+    @ManyToOne
+    private PostalCode postalCode;
+
+    @ManyToOne
+    private Country country;
+
+    @ManyToOne
+    private Region region;
+
+    @ManyToOne
+    private County county;
 
 }

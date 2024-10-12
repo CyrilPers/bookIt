@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Setter
@@ -23,9 +22,9 @@ public class Service {
 
     private BigDecimal price;
 
-    @OneToMany
-    private List<Appointement> appointements;
-
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private Company company;
 }

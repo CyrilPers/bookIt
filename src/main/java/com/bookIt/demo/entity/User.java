@@ -1,9 +1,9 @@
 package com.bookIt.demo.entity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -20,10 +20,13 @@ public class User {
 
     private Boolean enabled = false;
 
+    @Email(message = "EMAIL_FORMAT_ERROR")
+    @Column(unique = true)
     private String email;
 
     private String password;
 
+    @Column(unique = true)
     private String phoneNumber;
 
     private LocalDateTime creationDate;

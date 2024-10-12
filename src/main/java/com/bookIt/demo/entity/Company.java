@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -21,13 +22,14 @@ public class Company {
     private String name;
 
     @ManyToMany
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<>();
 
     private String description;
 
+    @Column(unique = true)
     private Integer siret;
 
-    private Integer textMessageBalance;
+    private Integer smsBalance;
 
     private String adminLink;
 
@@ -36,4 +38,9 @@ public class Company {
 
     private LocalDateTime creation;
 
+    @OneToMany
+    private List<Service> services = new ArrayList<>();
+
+    @OneToMany
+    private List<WorkerCompany> workerCompanies  = new ArrayList<>();
 }

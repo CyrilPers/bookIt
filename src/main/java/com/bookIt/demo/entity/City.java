@@ -10,17 +10,8 @@ import lombok.Setter;
 @Table(name = "city")
 public class City {
     @Id
-    @Column(name = "insee_city", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String label;
-
-    @ManyToOne(optional = false)
-    private County inseeCounty;
-
-    @ManyToOne(optional = false)
-    private Country inseeCountry;
-
-    @ManyToOne(optional = false)
-    private PostalCode postalCode;
 }
