@@ -10,7 +10,7 @@
     <li>
         <span th:text="${company.name}"></span>
         <span th:text="${company.siret}"></span>
-        <th:block th:if="${company.categories != null && !#lists.isEmpty(company.categories)}">
+        <th:block th:if="${company.categories != null}">
         <th:block th:each="category : ${company.categories}">
         <span th:text="${category.label}"></span>
         </th:block>

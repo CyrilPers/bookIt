@@ -19,15 +19,11 @@ public class Category {
 
     private String label;
 
-    @ManyToMany
-    private List<Company> companies;
-
     public Category() {
     }
 
-    public Category(Integer id, String label, List<Company> companies) {
+    public Category(Integer id, String label) {
         this.id = id;
         this.label = label;
-        this.companies = companies;
     }
 }

@@ -21,7 +21,7 @@ public class Company {
 
     private String name;
 
-    @ManyToMany(mappedBy = "companies", fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 
     private String description;
