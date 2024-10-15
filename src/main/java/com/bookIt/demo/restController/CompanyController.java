@@ -1,11 +1,53 @@
 package com.bookIt.demo.restController;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bookIt.demo.entity.Category;
+import com.bookIt.demo.entity.Company;
+import com.bookIt.demo.exception.FunctionalException;
+import com.bookIt.demo.service.CategoryService;
+import com.bookIt.demo.service.CompanyService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/api/company")
 public class CompanyController {
 
+    @Autowired
+    CompanyService companyService;
 
+    @Autowired
+    ModelMapper mapper;
+
+    @Autowired
+    CategoryService categorySvc;
+
+    @GetMapping("/findById/{idCompany}")
+    public Company findById(@PathVariable int idCompany) {
+        return companyService.findById(idCompany);
+    }
+
+    @PostMapping(value = "/create")
+    public Company create(@RequestParam String name, @RequestParam String description, @RequestParam(required = false) List<Integer> categories) throws FunctionalException {
+        Company company = new Company(name, description);
+        List<Category> categoryList = new ArrayList<>();
+        for (Integer categoryId: categories) {
+            Category categoryFromDb = categorySvc.findById(categoryId);
+            categoryList.add(categoryFromDb);
+        }
+        company.setCategories(categoryList);
+        return companyService.save(company);
+    }
+
+    @GetMapping("/all")
+    public List<Company> getAll() {
+        return companyService.findAll();
+    }
+
+    @PostMapping("/update/{id}")
+    public Company update(@PathVariable int idCompany, @RequestBody Company company) {
+        return companyService.update(idCompany, company);
+    }
 }

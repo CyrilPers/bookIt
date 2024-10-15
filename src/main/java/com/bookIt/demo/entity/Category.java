@@ -1,7 +1,9 @@
 package com.bookIt.demo.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "category")
+@Builder
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +21,13 @@ public class Category {
 
     @ManyToMany
     private List<Company> companies;
+
+    public Category() {
+    }
+
+    public Category(Integer id, String label, List<Company> companies) {
+        this.id = id;
+        this.label = label;
+        this.companies = companies;
+    }
 }

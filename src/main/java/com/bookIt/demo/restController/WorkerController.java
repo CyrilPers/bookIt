@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/worker")
-
+@RequestMapping("/api/worker")
 public class WorkerController {
 
     @Autowired

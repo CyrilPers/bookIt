@@ -1,8 +1,7 @@
 package com.bookIt.demo.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +9,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class WorkerCompany{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +29,15 @@ public class WorkerCompany{
     @ManyToMany
     private List<Appointement> appointements = new ArrayList<>();
 
+    @OneToMany
+    private List<Planning> plannings = new ArrayList<>();
+
     @ManyToMany
     private List<Service> services = new ArrayList<>();
+
+    public WorkerCompany(Worker worker, Company company) {
+        this.worker = worker;
+        this.company = company;
+    }
+
 }

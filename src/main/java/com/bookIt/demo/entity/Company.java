@@ -21,7 +21,7 @@ public class Company {
 
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "companies", fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 
     private String description;
@@ -38,9 +38,14 @@ public class Company {
 
     private LocalDateTime creation;
 
-    @OneToMany
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
     private List<Service> services = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
     private List<WorkerCompany> workerCompanies  = new ArrayList<>();
+
+    public Company(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }

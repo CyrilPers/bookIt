@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,10 +24,12 @@ public class Appointement {
     @JoinColumn(name = "service_id")
     private Service service;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
-
     @ManyToOne(optional = false)
     private AppointmentState appointmentState;
+
+    @ManyToOne
+    private WorkerCompany workerCompany;
+
+    @ManyToOne
+    private Customer customers;
 }

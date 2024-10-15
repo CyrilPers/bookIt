@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String firstName;
@@ -31,6 +31,12 @@ public class User {
 
     private LocalDateTime creationDate;
 
+    @OneToOne
+    private Customer customer;
+
+    @OneToOne
+    private Worker worker;
+
     @OneToOne(orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_USER_ADDRESS"))
     private Address address;
@@ -47,5 +53,6 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.creationDate = creationDate;
         this.address = address;
+        this.creationDate = LocalDateTime.now();
     }
 }

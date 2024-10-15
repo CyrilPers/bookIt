@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -14,9 +15,9 @@ public class Planning {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Instant dateStart;
+    private LocalDateTime dateStart;
 
-    private Instant dateEnd;
+    private LocalDateTime dateEnd;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Company company;

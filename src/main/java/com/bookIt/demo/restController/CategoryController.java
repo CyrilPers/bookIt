@@ -1,9 +1,26 @@
 package com.bookIt.demo.restController;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.bookIt.demo.entity.Category;
+import com.bookIt.demo.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@RequestMapping("/api/category")
 public class CategoryController {
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @PostMapping("/create")
+    public Category createCategory(@RequestBody Category category) {
+        return categoryService.save(category);
+    }
+
+    @GetMapping("/all")
+    public List<Category> getAllCategories() {
+        return categoryService.findAll();
+    }
 }

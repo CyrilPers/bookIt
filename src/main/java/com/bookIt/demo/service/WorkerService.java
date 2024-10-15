@@ -8,6 +8,7 @@ import com.bookIt.demo.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.bookIt.demo.enums.code.customer.CustomerError.CUSTOMER_ALREADY_EXIST;
 import static com.bookIt.demo.enums.code.worker.WorkerError.*;
 
 @Service
@@ -17,20 +18,12 @@ public class WorkerService {
     private WorkerRepository workerRepo;
 
     @Autowired
-    private CustomerService customerSvc;
+    private UserService userSvc;
 
     public Worker createWorker(Worker worker) throws FunctionalException {
-        Worker workerFromDb = workerRepo.findByEmail(worker.getEmail());
-        if (workerFromDb != null) throw new FunctionalException(WORKER_ALREADY_EXIST);
-        workerFromDb = findByPhoneNumber(worker);
-        if (workerFromDb != null) throw new FunctionalException(PHONE_NUMBER_ALREADY_USED);
-        Customer customerFromDb = customerSvc.findByEmail(worker.getEmail());
-        if (customerFromDb != null) worker.setId(customerFromDb.getId());
-        Worker workerSaved = workerRepo.findByEmail(worker.getEmail());
-        if  (customerFromDb == null) {
-            Customer customerToSave = new Customer(workerSaved);
-            customerSvc.save(customerToSave);
-        }
+        User userFromDb = userSvc.findByEmail(worker.getUser().getEmail());
+        if (userFromDb.getCustomer() != null) throw new FunctionalException(CUSTOMER_ALREADY_EXIST);
+        if (userFromDb != null) worker.getUser().setId(userFromDb.getId());
         return workerRepo.save(worker);
     }
 
@@ -38,21 +31,8 @@ public class WorkerService {
         return workerRepo.findById(id);
     }
 
-    public Worker findByEmail(String email) {
-        return workerRepo.findByEmail(email);
-    }
-
-    public Worker findByPhoneNumber(Worker worker) throws FunctionalException {
-        return workerRepo.findByPhoneNumber(worker.getPhoneNumber());
-    }
-
     public Worker update(Worker worker) throws FunctionalException {
-        Worker workerFromDb = workerRepo.findById(worker.getId()).orElseThrow(() -> new FunctionalException(WORKER_NOT_FOUND));
-        workerFromDb.setFirstName(worker.getFirstName());
-        workerFromDb.setLastName(worker.getLastName());
-        workerFromDb.setEmail(worker.getEmail());
-        workerFromDb.setPhoneNumber(worker.getPhoneNumber());
-        return workerRepo.save(workerFromDb);
+        return workerRepo.save(worker);
     }
 
     public Worker deleteById(int id) {
