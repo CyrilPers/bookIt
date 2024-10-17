@@ -1,6 +1,6 @@
 package com.bookIt.demo.dto;
 
-public class WorkerDto {
+public class WorkerDTO {
     private Integer workerId;
     private String workerFirstName;
     private String workerLastName;

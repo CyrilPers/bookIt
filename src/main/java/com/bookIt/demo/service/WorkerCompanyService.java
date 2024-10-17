@@ -77,4 +77,8 @@ public class WorkerCompanyService {
     public WorkerCompany findByEmailAndIdCompany(String username, Integer idCompany) {
         return workerCompanyRepo.findByEmailAndCompanyId(username, idCompany);
     }
+
+    public WorkerCompany save(WorkerCompany workerCompany) {
+        return workerCompanyRepo.save(workerCompany);
+    }
 }

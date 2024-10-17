@@ -1,4 +1,4 @@
-package com.bookIt.demo.tool.JwtToken;
+package com.bookIt.demo.tool.jwtToken;
 
 import com.bookIt.demo.model.UserAccount;
 import io.jsonwebtoken.Claims;

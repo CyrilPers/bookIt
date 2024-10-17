@@ -1,9 +1,12 @@
 package com.bookIt.demo.configuration;
 
+import com.bookIt.demo.mapper.CustomerMapper;
+import com.bookIt.demo.repository.CustomerRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -16,13 +19,16 @@ public class SecurityConfig {
     }
 
     @Bean
+    UserDetailsService userDetailsService(CustomerRepository customerRepo) {
+        return username -> CustomerMapper.toUserDetails(customerRepo.findByEmail(username));
+    }
+
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(request -> request
-                        .requestMatchers("/","login").permitAll()
-                        .requestMatchers("/logout").authenticated()
-                        .requestMatchers("/profile/{idUser}").authenticated()
-                        .requestMatchers("/manage/{companyLink}/login").permitAll()
-                        .requestMatchers("/manage/{companyLink}/**").authenticated()
+                        .requestMatchers("/","/login").permitAll()
+                        .requestMatchers("/company/all").permitAll()
+                        .requestMatchers("/api/**").authenticated()
                         .anyRequest().denyAll())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());

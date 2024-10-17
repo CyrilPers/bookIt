@@ -2,13 +2,9 @@ package com.bookIt.demo.model;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
 @Entity
 public class Appointement {
     @Id
@@ -21,14 +17,70 @@ public class Appointement {
 
     @ManyToOne
     @JoinColumn(name = "service_id")
-    private Service service;
+    private Performance performance;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private AppointmentState appointmentState;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private WorkerCompany workerCompany;
 
-    @ManyToOne
-    private Customer customers;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Customer customer;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getDateStart() {
+        return dateStart;
+    }
+
+    public void setDateStart(LocalDateTime dateStart) {
+        this.dateStart = dateStart;
+    }
+
+    public LocalDateTime getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(LocalDateTime dateEnd) {
+        this.dateEnd = dateEnd;
+    }
+
+    public Performance getPerformance() {
+        return performance;
+    }
+
+    public void setPerformance(Performance performance) {
+        this.performance = performance;
+    }
+
+    public AppointmentState getAppointmentState() {
+        return appointmentState;
+    }
+
+    public void setAppointmentState(AppointmentState appointmentState) {
+        this.appointmentState = appointmentState;
+    }
+
+    public WorkerCompany getWorkerCompany() {
+        return workerCompany;
+    }
+
+    public void setWorkerCompany(WorkerCompany workerCompany) {
+        this.workerCompany = workerCompany;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }

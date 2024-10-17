@@ -14,13 +14,13 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String label;
+    private String name;
 
     public Category() {
     }
 
-    public Category(Integer id, String label) {
+    public Category(Integer id, String name) {
         this.id = id;
-        this.label = label;
+        this.name = name;
     }
 }

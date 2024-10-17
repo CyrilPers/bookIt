@@ -1,8 +1,13 @@
 package com.bookIt.demo.restController;
 
+import com.bookIt.demo.dto.AuthRequestDTO;
+import com.bookIt.demo.dto.WorkerCompanyAuthRequestDTO;
+import com.bookIt.demo.dto.WorkerCompanyAuthResponseDTO;
 import com.bookIt.demo.model.Category;
 import com.bookIt.demo.model.Company;
 import com.bookIt.demo.exception.FunctionalException;
+import com.bookIt.demo.model.Performance;
+import com.bookIt.demo.service.AuthentificationWorkerService;
 import com.bookIt.demo.service.CategoryService;
 import com.bookIt.demo.service.CompanyService;
 import org.modelmapper.ModelMapper;
@@ -23,6 +28,9 @@ public class CompanyController {
 
     @Autowired
     CategoryService categorySvc;
+
+    @Autowired
+    private AuthentificationWorkerService authWorkerSvc;
 
     @GetMapping("/findById/{idCompany}")
     public Company findById(@PathVariable int idCompany) {
@@ -49,5 +57,10 @@ public class CompanyController {
     @PostMapping("/update/{id}")
     public Company update(@PathVariable int idCompany, @RequestBody Company company) {
         return companyService.update(idCompany, company);
+    }
+
+    @PostMapping("/login/{idCompany}")
+    public WorkerCompanyAuthResponseDTO login(@PathVariable int idCompany, @RequestBody AuthRequestDTO authRequest) {
+        return authWorkerSvc.login(authRequest, idCompany);
     }
 }

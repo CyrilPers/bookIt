@@ -17,7 +17,7 @@ public class WorkerCompany{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Worker worker;
 
     @ManyToOne
@@ -33,7 +33,7 @@ public class WorkerCompany{
     private List<Planning> plannings = new ArrayList<>();
 
     @ManyToMany
-    private List<Service> services = new ArrayList<>();
+    private List<Performance> performances = new ArrayList<>();
 
     public WorkerCompany(Worker worker, Company company) {
         this.worker = worker;

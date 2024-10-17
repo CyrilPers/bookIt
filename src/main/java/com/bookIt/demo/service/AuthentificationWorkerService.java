@@ -1,9 +1,10 @@
 package com.bookIt.demo.service;
 
+import com.bookIt.demo.dto.AuthRequestDTO;
 import com.bookIt.demo.dto.WorkerCompanyAuthResponseDTO;
 import com.bookIt.demo.model.WorkerCompany;
 import com.bookIt.demo.model.security.Token;
-import com.bookIt.demo.tool.JwtToken.JwtTokenTool;
+import com.bookIt.demo.tool.jwtToken.JwtTokenTool;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,17 +24,17 @@ public class AuthentificationWorkerService {
     private JwtTokenTool jwtTokenUtil;
 
 
-    public WorkerCompanyAuthResponseDTO login(String username, String password, Integer idCompany) {
+    public WorkerCompanyAuthResponseDTO login(AuthRequestDTO authRequest, Integer idCompany) {
 
         final WorkerCompany workerCompany;
 
         try {
-            workerCompany = workerCompanySvc.findByEmailAndIdCompany(username, idCompany);
+            workerCompany = workerCompanySvc.findByEmailAndIdCompany(authRequest.getEmail(), idCompany);
         } catch (UsernameNotFoundException e) {
             return null;
         }
 
-        if (passwordEncoder.matches(password, workerCompany.getWorker().getUser().getPassword())) {
+        if (passwordEncoder.matches(authRequest.getPassword(), workerCompany.getWorker().getUser().getPassword())) {
 
             String token = this.jwtTokenUtil.generateToken(workerCompany.getWorker().getUser());
 

@@ -18,19 +18,18 @@ public interface WorkerCompanyRepository extends JpaRepository<WorkerCompany, In
 
 
     @Query("SELECT DISTINCT wc.worker FROM WorkerCompany wc " +
-            "JOIN wc.plannings p " +
-            "JOIN wc.services s " +
+            "JOIN wc.plannings pla " +
+            "JOIN wc.performances p " +
             "WHERE wc.company.id = :companyId " +
-            "AND p.dateStart <= :dateEnd " +
-            "AND p.dateEnd >= :dateStart " +
-            "AND s.id = :serviceId")
+            "AND pla.dateStart <= :dateEnd " +
+            "AND pla.dateEnd >= :dateStart " +
+            "AND p.id = :serviceId")
     List<Worker> getWorkersWithFreePlanningForService(int companyId, LocalDateTime dateStart, LocalDateTime dateEnd, int serviceId);
 
     WorkerCompany save(WorkerCompany workerCompany);
 
     WorkerCompany findWorkerCompanyByCompanyIdAndWorkerId(int companyId, int workerId);
 
-    WorkerCompany findByEmail(String username);
-
-    WorkerCompany findByEmailAndCompanyId(String username, Integer idCompany);
+    @Query("SELECT wc FROM WorkerCompany wc JOIN wc.worker w JOIN w.user u WHERE u.email = :email AND wc.company.id = :idCompany")
+    WorkerCompany findByEmailAndCompanyId(String email, Integer idCompany);
 }

@@ -1,15 +1,17 @@
 package com.bookIt.demo.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @Entity
-public class Service {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Performance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -27,4 +29,5 @@ public class Service {
 
     @ManyToOne
     private Company company;
+
 }

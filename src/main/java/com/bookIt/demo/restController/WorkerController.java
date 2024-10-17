@@ -1,6 +1,6 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.dto.WorkerDto;
+import com.bookIt.demo.dto.WorkerDTO;
 import com.bookIt.demo.service.WorkerService;
 import com.bookIt.demo.model.Worker;
 import com.bookIt.demo.exception.FunctionalException;
@@ -20,15 +20,15 @@ public class WorkerController {
 
 
     @PostMapping("/create")
-    public WorkerDto createWorker(@RequestBody Worker worker) throws FunctionalException {
+    public WorkerDTO createWorker(@RequestBody Worker worker) throws FunctionalException {
         Worker savedWorker = workerSvc.createWorker(worker);
-        return mapper.map(savedWorker, WorkerDto.class);
+        return mapper.map(savedWorker, WorkerDTO.class);
     }
 
     @PostMapping("/update")
-    public WorkerDto updateWorker(@RequestBody Worker worker) throws FunctionalException {
+    public WorkerDTO updateWorker(@RequestBody Worker worker) throws FunctionalException {
         Worker updatedWorker = workerSvc.update(worker);
-        return mapper.map(updatedWorker, WorkerDto.class);
+        return mapper.map(updatedWorker, WorkerDTO.class);
     }
 
 }

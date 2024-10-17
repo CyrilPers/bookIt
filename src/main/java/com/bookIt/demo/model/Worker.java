@@ -5,20 +5,15 @@ import lombok.*;
 
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
 public class Worker {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private UserAccount user;
-
-     @OneToMany(mappedBy = "worker")
-     private List<WorkerCompany> workerCompanies;
 
     @Column(unique = true)
     private String professionnalPhoneNumber;
@@ -29,4 +24,27 @@ public class Worker {
 
     public Worker() {}
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public UserAccount getUser() {
+        return user;
+    }
+
+    public void setUser(UserAccount user) {
+        this.user = user;
+    }
+
+    public String getProfessionnalPhoneNumber() {
+        return professionnalPhoneNumber;
+    }
+
+    public void setProfessionnalPhoneNumber(String professionnalPhoneNumber) {
+        this.professionnalPhoneNumber = professionnalPhoneNumber;
+    }
 }

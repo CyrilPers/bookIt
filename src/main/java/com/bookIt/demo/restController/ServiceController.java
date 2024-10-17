@@ -1,7 +1,7 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.model.Service;
-import com.bookIt.demo.service.ServiceService;
+import com.bookIt.demo.model.Performance;
+import com.bookIt.demo.service.PerformanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class ServiceController {
 
     @Autowired
-    private ServiceService serviceSvc;
+    private PerformanceService serviceSvc;
 
     @PostMapping("/createService")
-    public Service createService(Service service) {
-        return serviceSvc.save(service);
+    public Performance createService(Performance performance) {
+        return serviceSvc.save(performance);
     }
 }

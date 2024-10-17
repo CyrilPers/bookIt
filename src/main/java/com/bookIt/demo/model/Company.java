@@ -38,8 +38,8 @@ public class Company {
 
     private LocalDateTime creation;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
-    private List<Service> services = new ArrayList<>();
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Performance> performances = new ArrayList<>();
 
     @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
     private List<WorkerCompany> workerCompanies  = new ArrayList<>();

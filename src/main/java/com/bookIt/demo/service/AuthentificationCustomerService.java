@@ -1,14 +1,12 @@
 package com.bookIt.demo.service;
 
+import com.bookIt.demo.dto.AuthRequestDTO;
 import com.bookIt.demo.dto.CustomerAuthResponseDTO;
-import com.bookIt.demo.dto.WorkerCompanyAuthResponseDTO;
 import com.bookIt.demo.model.Customer;
 import com.bookIt.demo.model.security.Token;
-import com.bookIt.demo.repository.CustomerRepository;
-import com.bookIt.demo.tool.JwtToken.JwtTokenTool;
+import com.bookIt.demo.tool.jwtToken.JwtTokenTool;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,17 +23,17 @@ public class AuthentificationCustomerService {
     @Autowired
     private CustomerService customerSvc;
 
-    public CustomerAuthResponseDTO login(String username, String password) {
+    public CustomerAuthResponseDTO login(AuthRequestDTO authRequest) {
 
         final Customer customer;
 
         try {
-            customer = customerSvc.findByEmail(username);
+            customer = customerSvc.findByEmail(authRequest.getEmail());
         } catch (UsernameNotFoundException e) {
             return null;
         }
 
-        if (passwordEncoder.matches(password, customer.getUser().getPassword())) {
+        if (passwordEncoder.matches(authRequest.getPassword(), customer.getUser().getPassword())) {
 
             String token = this.jwtTokenUtil.generateToken(customer.getUser());
 
