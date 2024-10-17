@@ -1,6 +1,6 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.entity.Category;
+import com.bookIt.demo.model.Category;
 import com.bookIt.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

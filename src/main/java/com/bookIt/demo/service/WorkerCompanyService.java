@@ -1,10 +1,10 @@
 package com.bookIt.demo.service;
-import com.bookIt.demo.entity.Company;
-import com.bookIt.demo.entity.Role;
-import com.bookIt.demo.entity.WorkerCompany;
+import com.bookIt.demo.model.Company;
+import com.bookIt.demo.model.Role;
+import com.bookIt.demo.model.WorkerCompany;
 import com.bookIt.demo.exception.FunctionalException;
 import com.bookIt.demo.repository.WorkerCompanyRepository;
-import com.bookIt.demo.entity.Worker;
+import com.bookIt.demo.model.Worker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,5 +72,9 @@ public class WorkerCompanyService {
         WorkerCompany savedWorkerCompany = workerCompanyRepo.save(workerCompany);
         if (savedWorkerCompany == null) throw new FunctionalException(UPDATING_ROLE_WORKER_COMPANY_FAIL);
         return savedWorkerCompany;
+    }
+
+    public WorkerCompany findByEmailAndIdCompany(String username, Integer idCompany) {
+        return workerCompanyRepo.findByEmailAndCompanyId(username, idCompany);
     }
 }

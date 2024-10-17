@@ -1,7 +1,7 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.entity.Category;
-import com.bookIt.demo.entity.Company;
+import com.bookIt.demo.model.Category;
+import com.bookIt.demo.model.Company;
 import com.bookIt.demo.exception.FunctionalException;
 import com.bookIt.demo.service.CategoryService;
 import com.bookIt.demo.service.CompanyService;

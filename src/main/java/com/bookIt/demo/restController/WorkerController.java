@@ -2,7 +2,7 @@ package com.bookIt.demo.restController;
 
 import com.bookIt.demo.dto.WorkerDto;
 import com.bookIt.demo.service.WorkerService;
-import com.bookIt.demo.entity.Worker;
+import com.bookIt.demo.model.Worker;
 import com.bookIt.demo.exception.FunctionalException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

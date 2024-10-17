@@ -1,6 +1,6 @@
 package com.bookIt.demo.service;
 
-import com.bookIt.demo.entity.Role;
+import com.bookIt.demo.model.Role;
 import com.bookIt.demo.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

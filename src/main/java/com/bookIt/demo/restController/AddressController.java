@@ -1,6 +1,6 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.entity.Address;
+import com.bookIt.demo.model.Address;
 import com.bookIt.demo.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

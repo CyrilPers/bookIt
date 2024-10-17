@@ -1,9 +1,9 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.entity.WorkerCompany;
+import com.bookIt.demo.model.WorkerCompany;
 import com.bookIt.demo.exception.FunctionalException;
 import com.bookIt.demo.service.WorkerCompanyService;
-import com.bookIt.demo.entity.Worker;
+import com.bookIt.demo.model.Worker;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

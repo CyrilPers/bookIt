@@ -1,4 +1,4 @@
-package com.bookIt.demo.entity;
+package com.bookIt.demo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,7 +23,7 @@ public class WorkerCompany{
     @ManyToOne
     private Company company;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();
 
     @ManyToMany

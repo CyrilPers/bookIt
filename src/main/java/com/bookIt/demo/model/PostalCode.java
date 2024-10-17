@@ -1,4 +1,4 @@
-package com.bookIt.demo.entity;
+package com.bookIt.demo.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

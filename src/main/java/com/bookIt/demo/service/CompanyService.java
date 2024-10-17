@@ -1,14 +1,10 @@
 package com.bookIt.demo.service;
 
-import com.bookIt.demo.entity.Category;
-import com.bookIt.demo.entity.Company;
-import com.bookIt.demo.exception.FunctionalException;
-import com.bookIt.demo.repository.CategoryRepository;
+import com.bookIt.demo.model.Company;
 import com.bookIt.demo.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

@@ -1,7 +1,7 @@
 package com.bookIt.demo.repository;
 
-import com.bookIt.demo.entity.Worker;
-import com.bookIt.demo.entity.WorkerCompany;
+import com.bookIt.demo.model.Worker;
+import com.bookIt.demo.model.WorkerCompany;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -29,4 +29,8 @@ public interface WorkerCompanyRepository extends JpaRepository<WorkerCompany, In
     WorkerCompany save(WorkerCompany workerCompany);
 
     WorkerCompany findWorkerCompanyByCompanyIdAndWorkerId(int companyId, int workerId);
+
+    WorkerCompany findByEmail(String username);
+
+    WorkerCompany findByEmailAndCompanyId(String username, Integer idCompany);
 }

@@ -1,11 +1,8 @@
-package com.bookIt.demo.entity;
+package com.bookIt.demo.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -18,7 +15,10 @@ public class Worker {
     private Integer id;
 
     @OneToOne
-    private User user;
+    private UserAccount user;
+
+     @OneToMany(mappedBy = "worker")
+     private List<WorkerCompany> workerCompanies;
 
     @Column(unique = true)
     private String professionnalPhoneNumber;

@@ -1,6 +1,6 @@
 package com.bookIt.demo.service;
 
-import com.bookIt.demo.entity.Category;
+import com.bookIt.demo.model.Category;
 import com.bookIt.demo.exception.FunctionalException;
 import com.bookIt.demo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

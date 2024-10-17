@@ -1,4 +1,4 @@
-package com.bookIt.demo.entity;
+package com.bookIt.demo.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -41,9 +41,9 @@ public class User {
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "FK_USER_ADDRESS"))
     private Address address;
 
-    public User() {}
+    public UserAccount() {}
 
-    public User(Integer id, String firstName, String lastName, Boolean enabled, String email, String password, String phoneNumber, LocalDateTime creationDate, Address address) {
+    public UserAccount(Integer id, String firstName, String lastName, Boolean enabled, String email, String password, String phoneNumber, LocalDateTime creationDate, Address address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

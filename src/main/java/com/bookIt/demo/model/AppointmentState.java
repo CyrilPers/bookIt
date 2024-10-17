@@ -1,4 +1,4 @@
-package com.bookIt.demo.entity;
+package com.bookIt.demo.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,18 +10,15 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Customer {
+@Table(name = "appointment_state")
+public class AppointmentState {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Boolean advertising = false;
-
-    @OneToOne
-    private User user;
+    private String label;
 
     @OneToMany
     private List<Appointement> appointements = new ArrayList<>();
 
-    public Customer() {}
 }

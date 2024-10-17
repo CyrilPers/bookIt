@@ -1,7 +1,7 @@
 package com.bookIt.demo.controler;
 
-import com.bookIt.demo.entity.Category;
-import com.bookIt.demo.entity.Company;
+import com.bookIt.demo.model.Category;
+import com.bookIt.demo.model.Company;
 import com.bookIt.demo.service.CategoryService;
 import com.bookIt.demo.service.CompanyService;
 import org.springframework.stereotype.Controller;

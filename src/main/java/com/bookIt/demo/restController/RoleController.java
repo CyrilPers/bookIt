@@ -1,6 +1,6 @@
 package com.bookIt.demo.restController;
 
-import com.bookIt.demo.entity.Role;
+import com.bookIt.demo.model.Role;
 import com.bookIt.demo.repository.RoleRepository;
 import com.bookIt.demo.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
