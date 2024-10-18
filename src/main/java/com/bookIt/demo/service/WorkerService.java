@@ -3,9 +3,12 @@ package com.bookIt.demo.service;
 import com.bookIt.demo.model.UserAccount;
 import com.bookIt.demo.model.Worker;
 import com.bookIt.demo.exception.FunctionalException;
+import com.bookIt.demo.model.WorkerCompany;
 import com.bookIt.demo.repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 import static com.bookIt.demo.enums.code.customer.CustomerError.CUSTOMER_ALREADY_EXIST;
 
@@ -35,5 +38,13 @@ public class WorkerService {
 
     public Worker deleteById(int id) {
         return workerRepo.deleteById(id);
+    }
+
+    public Worker findByEmail(String email) {
+        return workerRepo.findByEmail(email);
+    }
+
+    public List<Worker> findAll() {
+        return workerRepo.findAll();
     }
 }

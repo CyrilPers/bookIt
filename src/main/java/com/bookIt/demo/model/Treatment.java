@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Performance {
+public class Treatment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

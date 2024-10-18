@@ -1,17 +1,17 @@
 package com.bookIt.demo.restController;
 
 import com.bookIt.demo.dto.AuthRequestDTO;
-import com.bookIt.demo.dto.WorkerCompanyAuthRequestDTO;
-import com.bookIt.demo.dto.WorkerCompanyAuthResponseDTO;
+import com.bookIt.demo.dto.WorkerAuthResponseDTO;
 import com.bookIt.demo.model.Category;
 import com.bookIt.demo.model.Company;
 import com.bookIt.demo.exception.FunctionalException;
-import com.bookIt.demo.model.Performance;
+import com.bookIt.demo.security.SecurityService;
 import com.bookIt.demo.service.AuthentificationWorkerService;
 import com.bookIt.demo.service.CategoryService;
 import com.bookIt.demo.service.CompanyService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,9 @@ public class CompanyController {
 
     @Autowired
     private AuthentificationWorkerService authWorkerSvc;
+
+    @Autowired
+    private SecurityService securitySvc;
 
     @GetMapping("/findById/{idCompany}")
     public Company findById(@PathVariable int idCompany) {
@@ -54,13 +57,22 @@ public class CompanyController {
         return companyService.findAll();
     }
 
-    @PostMapping("/update/{id}")
-    public Company update(@PathVariable int idCompany, @RequestBody Company company) {
+    @PostMapping("/update/")
+    public Company update(@RequestParam Integer idCompany, @RequestBody Company company) {
         return companyService.update(idCompany, company);
     }
 
-    @PostMapping("/login/{idCompany}")
-    public WorkerCompanyAuthResponseDTO login(@PathVariable int idCompany, @RequestBody AuthRequestDTO authRequest) {
-        return authWorkerSvc.login(authRequest, idCompany);
+    @PostMapping("/{idCompany}/login")
+    public WorkerAuthResponseDTO login(@RequestBody AuthRequestDTO authRequest) {
+        return authWorkerSvc.login(authRequest);
+    }
+
+
+    @PostMapping("/{idCompany}/updateName/{newName}")
+    @PreAuthorize("@customCompanySecurity.hasCompanyRole(authentication, #idCompany.toString(), 'ADMIN')")
+    public Company updateName(@PathVariable Integer idCompany, @PathVariable String newName) {
+        Company company = companyService.findById(idCompany);
+        company.setName(newName);
+        return companyService.update(idCompany, company);
     }
 }

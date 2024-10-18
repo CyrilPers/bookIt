@@ -1,6 +1,8 @@
 package com.bookIt.demo.tool.jwtToken;
 
+import com.bookIt.demo.model.Customer;
 import com.bookIt.demo.model.UserAccount;
+import com.bookIt.demo.model.Worker;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -9,20 +11,35 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtTokenTool {
 
     // todo implement file
-    private final String secretKey = "secretKey";
+    private final String secretKey = "9294829482E7FJEDJENZDZDZJAcczdzZDJbcecej0099913ZZZZZZZZTTYYYSCXWXWXXWXWXWXZJDZBDZDZDZDDZDZDZDZDZDZefefeefefefefefvcvvbnncaawwxxDZDZZDB92BNCSJKNCSZSZDZDDZ";
 
     public String generateToken(UserAccount userDetails) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("userAccountId", userDetails.getId());
         return doGenerateToken(claims, userDetails.getEmail());
     }
+
+    public String generateToken(Customer customer) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("customerId", customer.getId());
+        return doGenerateToken(claims, customer.getUser().getEmail());
+    }
+
+    public String generateToken(Worker worker) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("workerId", worker.getId());
+        return doGenerateToken(claims, worker.getUser().getEmail());
+    }
+
 
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
@@ -72,5 +89,22 @@ public class JwtTokenTool {
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+
+    public Boolean validateToken(String token, Customer customer) {
+        final String username = extractUsername(token);
+        if (username == null) {
+            return false;
+        }
+        return (username.equals(customer.getUser().getEmail()) && !isTokenExpired(token));
+    }
+
+    public Boolean validateToken(String token, Worker worker) {
+        final String username = extractUsername(token);
+        if (username == null) {
+            return false;
+        }
+        return (username.equals(worker.getUser().getEmail()) && !isTokenExpired(token));
+    }
+
 
 }

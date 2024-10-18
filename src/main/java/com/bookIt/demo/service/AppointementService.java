@@ -16,7 +16,7 @@ public class AppointementService {
     @Autowired
     private CompanyService companySvc;
     @Autowired
-    private PerformanceService performanceSvc;
+    private TreatmentService performanceSvc;
     @Autowired
     private AppointementRepository appointementRepo;
 
@@ -25,9 +25,9 @@ public class AppointementService {
         Customer customer = customerSvc.findById(customerId);
         Company company = companySvc.findById(companyId);
         WorkerCompany workerCompany = company.getWorkerCompanies().get(0);
-        Performance performance = performanceSvc.findById(serviceId);
+        Treatment treatment = performanceSvc.findById(serviceId);
         appointement.setCustomer(customer);
-        appointement.setPerformance(performance);
+        appointement.setPerformance(treatment);
         appointement.setWorkerCompany(workerCompany);
         return appointementRepo.save(appointement);
     }

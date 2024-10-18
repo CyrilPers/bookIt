@@ -19,7 +19,7 @@ public interface WorkerCompanyRepository extends JpaRepository<WorkerCompany, In
 
     @Query("SELECT DISTINCT wc.worker FROM WorkerCompany wc " +
             "JOIN wc.plannings pla " +
-            "JOIN wc.performances p " +
+            "JOIN wc.treatments p " +
             "WHERE wc.company.id = :companyId " +
             "AND pla.dateStart <= :dateEnd " +
             "AND pla.dateEnd >= :dateStart " +

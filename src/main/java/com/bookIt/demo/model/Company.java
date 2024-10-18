@@ -39,7 +39,7 @@ public class Company {
     private LocalDateTime creation;
 
     @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Performance> performances = new ArrayList<>();
+    private List<Treatment> treatments = new ArrayList<>();
 
     @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
     private List<WorkerCompany> workerCompanies  = new ArrayList<>();

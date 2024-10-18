@@ -23,7 +23,7 @@ public class WorkerCompany{
     @ManyToOne
     private Company company;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Role> roles = new ArrayList<>();
 
     @ManyToMany
@@ -33,7 +33,7 @@ public class WorkerCompany{
     private List<Planning> plannings = new ArrayList<>();
 
     @ManyToMany
-    private List<Performance> performances = new ArrayList<>();
+    private List<Treatment> treatments = new ArrayList<>();
 
     public WorkerCompany(Worker worker, Company company) {
         this.worker = worker;

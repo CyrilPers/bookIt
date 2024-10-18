@@ -17,7 +17,7 @@ public class InitializerService {
     @Autowired
     private CustomerService customerSvc;
     @Autowired
-    private PerformanceService performanceSvc;
+    private TreatmentService performanceSvc;
     @Autowired
     private WorkerCompanyService workerCompanySvc;
     @Autowired
@@ -36,24 +36,29 @@ public class InitializerService {
         Customer customer = new Customer();
         customer.setUser(userCustomer);
         customer.setAdvertising(false);
-        Performance performance = new Performance();
-        performance.setName("Coupe");
-        performance.setDescription("Coupe de cheveux court");
-        performance.setPrice(BigDecimal.valueOf(25.5));
-        performance.setCompany(company);
-        company.getPerformances().add(performance);
+        Treatment treatment = new Treatment();
+        treatment.setName("Coupe");
+        treatment.setDescription("Coupe de cheveux court");
+        treatment.setPrice(BigDecimal.valueOf(25.5));
+        treatment.setCompany(company);
+        company.getTreatments().add(treatment);
+        company.setAdminLink("1234");
         UserAccount userWorker = new UserAccount();
         userWorker.setEmail("worker@gmail.com");
         userWorker.setPassword(passwordEncoder.encode("password"));
         userWorker.setFirstName("Eddie");
         userWorker.setLastName("Doe");
-        userWorker.setPhoneNumber("0612345678");
+        userWorker.setPhoneNumber("061234678");
         Worker worker = new Worker();
         worker.setUser(userWorker);
         WorkerCompany workerCompany = new WorkerCompany();
         workerCompany.setCompany(company);
         companySvc.save(company);
         customerSvc.save(customer);
+        workerCompany.setWorker(worker);
+        Role role = new Role();
+        role.setName("ADMIN");
+        workerCompany.getRoles().add(role);
         workerCompanySvc.save(workerCompany);
     }
 }

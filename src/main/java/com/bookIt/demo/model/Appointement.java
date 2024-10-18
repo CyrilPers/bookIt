@@ -17,7 +17,7 @@ public class Appointement {
 
     @ManyToOne
     @JoinColumn(name = "service_id")
-    private Performance performance;
+    private Treatment treatment;
 
     @ManyToOne
     private AppointmentState appointmentState;
@@ -52,12 +52,12 @@ public class Appointement {
         this.dateEnd = dateEnd;
     }
 
-    public Performance getPerformance() {
-        return performance;
+    public Treatment getPerformance() {
+        return treatment;
     }
 
-    public void setPerformance(Performance performance) {
-        this.performance = performance;
+    public void setPerformance(Treatment treatment) {
+        this.treatment = treatment;
     }
 
     public AppointmentState getAppointmentState() {

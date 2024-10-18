@@ -18,11 +18,22 @@ public class Worker {
     @Column(unique = true)
     private String professionnalPhoneNumber;
 
+    @OneToMany(mappedBy = "worker", fetch = FetchType.EAGER)
+    private List<WorkerCompany> workerCompany;
+
     public Worker(String professionnalPhoneNumber) {
         this.professionnalPhoneNumber = professionnalPhoneNumber;
     }
 
     public Worker() {}
+
+    public List<WorkerCompany> getWorkerCompany() {
+        return workerCompany;
+    }
+
+    public void setWorkerCompany(List<WorkerCompany> workerCompany) {
+        this.workerCompany = workerCompany;
+    }
 
     public Integer getId() {
         return id;

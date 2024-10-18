@@ -35,7 +35,7 @@ public class AuthentificationCustomerService {
 
         if (passwordEncoder.matches(authRequest.getPassword(), customer.getUser().getPassword())) {
 
-            String token = this.jwtTokenUtil.generateToken(customer.getUser());
+            String token = this.jwtTokenUtil.generateToken(customer);
 
             return new CustomerAuthResponseDTO(
                     new Token(

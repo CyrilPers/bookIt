@@ -1,7 +1,6 @@
 package com.bookIt.demo.service;
 
 import com.bookIt.demo.model.Company;
-import com.bookIt.demo.model.Performance;
 import com.bookIt.demo.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +30,7 @@ public class CompanyService {
         Company companyFromDb = companyRepo.findById(idCompany);
         companyFromDb.setName(company.getName());
         companyFromDb.setAddress(company.getAddress());
-        companyFromDb.setPerformances(company.getPerformances());
+        companyFromDb.setTreatments(company.getTreatments());
         companyFromDb.setWorkerCompanies(company.getWorkerCompanies());
         companyFromDb.setCategories(company.getCategories());
         companyFromDb.setDescription(company.getDescription());
