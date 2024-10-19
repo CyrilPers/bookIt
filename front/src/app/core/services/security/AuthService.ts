@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Customer} from "../../../models/customer/customer";
 import {catchError, map, Observable, throwError} from "rxjs";
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import {User} from "../../../models/user/user";
 
 @Injectable({ providedIn: 'root' })
@@ -64,8 +64,7 @@ export class AuthService {
             try {
                 const decodedToken = jwtDecode(token);
                 //TODO check token info !
-                const companies = decodedToken.roles || [];
-                return companies.includes(companyId);
+                const companies = [] || decodedToken;
             } catch (e) {
                 console.error("Failed to decode token", e);
                 return false;
