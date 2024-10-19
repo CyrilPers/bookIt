@@ -1,0 +1,62 @@
+.custom-btn {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d2d6dc;
+  border-radius: 2rem;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: 0.2s ease all;
+}
+
+.primary-btn {
+  background-color: #ff6700;
+  color: white;
+  border: 1px solid white;
+  font-weight: 400;
+  transition: 0.2s ease all;
+  &:focus {
+    background-color: #ff6700;
+    border-color: rgb(174, 186, 201);
+  }
+  &:active {
+    color: white;
+    background-color: gray;
+    border-color: #8c99a9;
+  }
+}
+
+.secondary-btn {
+  background-color: #26272b;
+  border: 1px solid white;
+  color: white;
+  &:hover {
+    background-color: #ff6700;
+  }
+}
+
+.tertiary-btn {
+  position:relative;
+  color:white;
+  background:orange;
+  transition: color .3s, background .3s;
+  &:hover {
+    color:orange;
+    background:white;
+  }
+}
+
+.tertiary-btn::before {
+  content:"";
+  background:conic-gradient(red, blue, pink, lime, red);
+  filter:blur(0);
+  inset:0;
+  transition:filter .3s;
+  position:absolute;
+  z-index:-1;
+}
+
+.tertiary-btn:hover::before {
+  z-index: 1;
+  filter:blur(10px);
+}

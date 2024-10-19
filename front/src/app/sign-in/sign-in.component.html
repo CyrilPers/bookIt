@@ -1,0 +1,41 @@
+<form class="sign-in" (ngSubmit)="onSubmit()" #signInForm="ngForm">
+    <h1>Connectez-vous</h1>
+    <div class="field email">
+        <div class="label">
+            <label for="email">Adresse email</label>
+        </div>
+        <input
+                email
+                class="form-control"
+                type="email"
+                id="email"
+                name="email"
+                [(ngModel)]="customer.email"
+                required
+        />
+        @if (signInForm.controls['email'].touched &&
+        signInForm.controls['email'].invalid) {
+            <div class="errors-list">
+                <span class="error-message">Adresse email invalide</span>
+            </div>
+        }
+    </div>
+    <div class="field password">
+        <div class="label password-label">
+            <label for="password">Mot de passe</label>
+            <a href="" class="password-lost">Mot de passe oublié ?</a>
+        </div>
+        <input type="password" id="password" name="password" [(ngModel)]="customer.password" required/>
+        @if (signInForm.controls['password'].touched &&
+        signInForm.controls['password'].invalid) {
+            <div class="errors-list">
+                <span class="error-message">Veuillez entrer un mot de passe</span>
+            </div>
+        }
+    </div>
+    <app-button label="S'identifier" color="black" fontSize="1rem" padding="0.35rem 3rem">
+    </app-button>
+    <div class="sign-up">
+        <a routerLink="/sign-up" routerLinkActive="active"><span>Nouveau client? S'enregistrer</span></a>
+    </div>
+</form>

@@ -1,0 +1,9 @@
+<button [style.font-size]="fontSize" [style.padding]="padding" class="custom-btn" [disabled]="disabled" [style.background-color]="color"
+  [class]="{
+    'primary-btn': color === 'primary',
+    'secondary-btn': color === 'secondary',
+    'tertiary-btn': color === 'tertiary'
+    }"
+>
+  {{ label }}
+</button>

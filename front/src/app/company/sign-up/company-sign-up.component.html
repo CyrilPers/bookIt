@@ -1,0 +1,195 @@
+<form class="sign-up" (ngSubmit)="onSubmit()" #signInForm="ngForm">
+    <h1>Inscrivez-vous</h1>
+    <div class="company">
+        <div class="field">
+            <div class="label">
+                <label for="company">Entreprise</label>
+            </div>
+            <input
+                    class="form-control"
+                    type="text"
+                    id="company"
+                    name="company"
+                    [(ngModel)]="worker.companies[0].name"
+                    required
+            />
+        </div>
+        <div class="field">
+            <div class="label">
+                <label for="siret">SIRET</label>
+            </div>
+            <input
+                    class="form-control"
+                    type="text"
+                    id="siret"
+                    name="siret"
+                    [(ngModel)]="worker.companies[0].siret"
+                    required
+            />
+        </div>
+        <div class="field">
+            <div class="label">
+                <label for="company_phone">Téléphone</label>
+            </div>
+            <input
+                    class="form-control"
+                    type="text"
+                    id="company_phone"
+                    name="company_phone"
+                    [(ngModel)]="worker.companies[0].phone"
+                    required
+            />
+        </div>
+        <div class="field">
+            <div class="label">
+                <label for="description">Description</label>
+            </div>
+            <textarea
+                    class="form-control"
+                    type="text"
+                    id="description"
+                    name="description"
+                    [(ngModel)]="worker.companies[0].description"
+                    required>
+            </textarea>
+        </div>
+        <div class="name">
+            <div class="field firstName">
+                <div class="label">
+                    <label for="firstName">Prénom</label>
+                </div>
+                <input
+                        class="form-control"
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        [(ngModel)]="worker.firstName"
+                        required
+                />
+                @if (signInForm.controls['firstName'].touched &&
+                signInForm.controls['firstName'].invalid) {
+                    <div class="errors-list">
+                        <span class="error-message">Prénom invalide</span>
+                    </div>
+                }
+            </div>
+            <div class="field lastname">
+                <div class="label">
+                    <label for="name">Nom</label>
+                </div>
+                <input
+                        class="form-control"
+                        type="text"
+                        id="name"
+                        name="name"
+                        [(ngModel)]="worker.lastName"
+                        required
+                />
+                @if (signInForm && signInForm.controls['name'].touched &&
+                signInForm.controls['name'].invalid) {
+                    <div class="errors-list">
+                        <span class="error-message">Nom invalide</span>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="field phone">
+            <div class="label">
+                <label for="phone">Téléphone</label>
+            </div>
+            <input
+                    class="form-control"
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    [(ngModel)]="worker.phone"
+                    required
+            />
+            @if (signInForm.controls['phone'].touched &&
+            signInForm.controls['phone'].invalid) {
+                <div class="errors-list">
+                    <span class="error-message">Téléphone invalide</span>
+                </div>
+            }
+
+        </div>
+        <div class="field email">
+            <div class="label">
+                <label for="email">Adresse email</label>
+            </div>
+            <input
+                    class="form-control"
+                    type="email"
+                    id="email"
+                    name="email"
+                    ngModel
+                    [(ngModel)]="worker.email"
+                    required
+            />
+            @if (signInForm.controls['email'].touched &&
+            signInForm.controls['email'].invalid) {
+                <div class="errors-list">
+                    <span class="error-message">Adresse email invalide</span>
+                </div>
+            }
+        </div>
+        <div class="field password">
+            <div class="label password-label">
+                <label for="password">Mot de passe</label>
+            </div>
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    [(ngModel)]="worker.password"
+                    required
+            />
+        </div>
+        <div class="field password">
+            <div class="label password-label">
+                <label for="confirmpassword">Confirmation mot de passe</label>
+            </div>
+            <input
+                    type="password"
+                    id="confirmpassword"
+                    name="confirmpassword"
+                    ngModel
+                    required
+            />
+
+            @if (formSubmitted && (signInForm.controls['password'].value != signInForm.controls['confirmpassword'].value)) {
+                <div class="errors-list">
+                    <span class="error-message">Les mots de passe ne correspondent pas</span>
+                </div>
+            }
+            @if (passwordErrors.length != 0) {
+                <div class="errors-list">
+                    @for (error of passwordErrors; track error) {
+                        <span class="error-message">{{ error }}</span
+                        >
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="name">
+            <input
+                    class="form-control"
+                    type="checkbox"
+                    id="cgu"
+                    name="cgu"
+                    [(ngModel)]="cguAccepted"
+            />
+            <div class="label">
+                <label for="cgu">J'accepte les CGU</label>
+            </div>
+        </div>
+        @if (formSubmitted && !cguAccepted) {
+            <div class="errors-list">
+                <span class="error-message">Veuillez accepter les CGU</span>
+            </div>
+        }
+        <app-button label="S'enregistrer" color="black" fontSize="1rem" padding="0.35rem 3rem">
+        </app-button>
+    </div>
+</form>

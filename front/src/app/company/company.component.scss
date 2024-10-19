@@ -1,0 +1,40 @@
+.company {
+    display: flex;
+    box-sizing: border-box;
+    padding: 20px 20%;
+    gap: 20px;
+}
+
+.company-picture {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.left {
+    width: 70%;
+}
+
+.right {
+    padding-top: 40px;
+    width: 30%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sub-title {
+width: 100%;
+}
+
+
+.title{
+margin-top: 15px;
+margin-left: 20%;
+}
+
+.title-box {
+    height: 20px;
+}
